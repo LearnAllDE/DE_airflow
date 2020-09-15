@@ -1,4 +1,4 @@
-FROM yandex/clickhouse-server
+FROM ubuntu:18.04
 
 MAINTAINER Alexander Somik
 
