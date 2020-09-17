@@ -1,18 +1,51 @@
 #from clickhouse_driver import Client
 import sys
 import logging
+from clickhouse_driver import Client
 
 logging.warning("Log app started")
 
-#client = Client('ch')
-#client.execute('SHOW TABLES')
-#client.execute('DROP TABLE IF EXISTS test')
-#client.execute('CREATE TABLE test (x Int32) ENGINE = Memory')
-#client.execute('INSERT INTO test (x) VALUES', [{'x': 100}])
-#client.execute('INSERT INTO test (x) VALUES', [[200]])
-#client.execute( 'INSERT INTO test (x) SELECT * FROM system.numbers LIMIT %(limit)s',{'limit': 3})
 
 
-#logging.warning(client.execute('SELECT sum(x) FROM test'))
-#logging.warning('All Good\n')
+def startTable(client):
+
+
+    client.execute("CREATE TABLE blumb ("
+                   "ts Int64,"
+                   "userId String,"
+                   "sessionId Int64,"
+                   "page String,"
+                   "auth String,"
+                   "method String,"
+                   "status Int64,"
+                   "level String,"
+                   "itemInSession Int64,"
+                   "location String,"
+                   "userAgent String,"
+                   "lastName String,"
+                   "firstName String,"
+                   "registration Int64,"
+                   "gender String,"
+                   "artist Nullable(String),"
+                   "song Nullable(String),"
+                   "length Nullable(Float64)"
+                   ")"
+                   "ENGINE = Memory()"
+
+                   )
+
+
+
+if __name__ == '__main__':
+    client = Client("ch")
+    client.execute("DROP TABLE IF EXISTS blumb")
+    startTable(client)
+    logging.warning("Database is created")
+
+
+
+
+
+
+
 
