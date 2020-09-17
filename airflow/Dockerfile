@@ -19,5 +19,5 @@ WORKDIR /opt/lib
 
 RUN pip install -r requirements.txt
 
-CMD ["webserver"]
+#CMD ["webserver"]
 

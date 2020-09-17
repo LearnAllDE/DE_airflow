@@ -7,11 +7,13 @@ services:
   ports:
    -  "8080:8080"
   environment:
-    SH: '*/10 * * * *'
+    SH: '*/2 * * * *'
   volumes:
    - /home/aquafeet/dep/data/:/opt/data
   depends_on:
    - clickhouse
+  command: webserver
+
   networks:
     - my_network
  clickhouse:

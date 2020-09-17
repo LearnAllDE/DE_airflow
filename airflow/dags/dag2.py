@@ -63,7 +63,7 @@ defaults = {
 	'retry_delay':timedelta(minutes=1)
 } 
 
-dag = DAG('run1', default_args = defaults,schedule_interval = os.environ["SH"])
+dag = DAG('run1', default_args = defaults,schedule_interval = os.environ["SH"],catchup=False)
 
 def json_iter(json_file_path):
     with open(json_file_path) as reader:
