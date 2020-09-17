@@ -1,19 +1,23 @@
 FROM puckel/docker-airflow:latest
 
-CMD ["webserver"]
-
 MAINTAINER Alexander Somik
 
-RUN apt-get -yqq update
 
-RUN apt-get -yqq install python3 python3-pip
+#RUN apt-get -yqq update
 
-ADD airflow/dags /usr/local/airflow/dags
+#RUN apt-get -yqq install python3 python3-pip
 
-ADD airflow/requirements.txt /opt/lib/requirements.txt
+ADD dags /usr/local/airflow/dags
 
-WORKDIR /opt/lib/
+ADD requirements.txt /opt/lib/requirements.txt
 
-RUN pip3 install -r requirements.txt
- 
+#ADD home/aquafeet/dep/data /opt/data
+
+WORKDIR /opt/lib
+
+
+
+RUN pip install -r requirements.txt
+
+CMD ["webserver"]
 

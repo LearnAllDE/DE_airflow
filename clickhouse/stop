@@ -1,7 +1,0 @@
-#!/bin/bash
-
-STR=$(docker ps -q)
-
-docker stop $STR
-
-docker rm $STR

@@ -52,8 +52,11 @@ def startTable(client):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
+    print(os.environ)
     client = Client('localhost')
 
+    if (client.execute("EXISTS TABLE blumb")[0][0] == 1):
+        print(1)
 
     client.execute('DROP TABLE IF EXISTS blumb')
     startTable(client)
