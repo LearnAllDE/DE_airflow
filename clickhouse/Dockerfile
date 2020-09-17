@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM yandex/clickhouse-server
 
 MAINTAINER Alexander Somik
 
@@ -12,6 +12,4 @@ WORKDIR /opt/client_place
 
 RUN pip3 install -r requirements.txt
 
-EXPOSE 5000
 
-CMD ["python3", "./app.py"]
