@@ -1,0 +1,34 @@
+version: '3'
+services:
+ airflow:
+  build:
+   context: airflow
+  container_name: af
+  ports:
+   -  "8080:8080"
+  environment:
+    SH: '*/2 * * * *'
+  volumes:
+   - /home/aquafeet/dep/data/:/opt/data
+  depends_on:
+   - clickhouse
+  command: webserver
+
+  networks:
+    - my_network
+ clickhouse:
+  image: yandex/clickhouse-server:latest
+  #restart: unless_stopped
+  container_name: ch
+  ulimits:
+   nofile:
+    soft: 262144
+    hard: 262144
+  #command: python3 ./app.py
+  ports:
+   - "9000:9000"
+  networks:
+   - my_network
+networks:
+  my_network:
+    driver: bridge
